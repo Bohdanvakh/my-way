@@ -1,15 +1,20 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateCarDto } from './dto/create-car.dto';
 import { UpdateCarDto } from './dto/update-car.dto';
 
 @Injectable()
 export class CarsService {
+  constructor(private prisma: PrismaService) {}
+
   create(createCarDto: CreateCarDto) {
-    return 'This action adds a new car';
+    return this.prisma.car.create({
+      data: createCarDto,
+    });
   }
 
   findAll() {
-    return `This action returns all cars`;
+    return this.prisma.car.findMany();
   }
 
   findOne(id: number) {
