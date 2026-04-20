@@ -1,1 +1,5 @@
-export class CreateCarDto {}
+export class CreateCarDto {
+    brend: string;
+    model: string;
+    year: string;
+}
