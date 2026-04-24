@@ -12,8 +12,20 @@ model User {
   updatedAt DateTime @updatedAt
   email     String
   hash      String
-  firstName String?
-  lastName  String?
+  firstName String
+  lastName  String
+  posts Post[]
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  approved Boolean
+  published Boolean
+  author User @relation(fields: [authorId], references: [id])
+  authorId Int // Foreing key connecting Post to User
+  title String
 }
 
 model Car {
