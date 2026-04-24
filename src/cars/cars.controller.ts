@@ -17,6 +17,11 @@ export class CarsController {
     return this.carsService.findAll();
   }
 
+  @Get('newer')
+  findNewest() {
+    return this.carsService.findNewer();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.carsService.findOne(+id);
