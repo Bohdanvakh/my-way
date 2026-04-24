@@ -21,6 +21,14 @@ export class CarsService {
     return `This action returns a #${id} car`;
   }
 
+  async findNewer() {
+    return this.prisma.car.findFirst({
+      orderBy: {
+        year: 'desc',
+      }
+    });
+  }
+
   update(id: number, updateCarDto: UpdateCarDto) {
     return `This action updates a #${id} car`;
   }
