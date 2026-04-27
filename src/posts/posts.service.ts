@@ -6,8 +6,14 @@ import { CreatePostDto } from './dto/create-post.dto';
 export class PostsService {
     constructor(private prisma: PrismaService) {}
 
+    findOne(id: number) {
+        return this.prisma.post.findUnique({
+            where: { id },
+        });
+    }
+
     findAll() {
-        return this.prisma.post.findMany();
+        return (this.prisma.post.findMany());
     }
 
     create(createPostDto: CreatePostDto) {

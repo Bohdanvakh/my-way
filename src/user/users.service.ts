@@ -6,6 +6,12 @@ import { CreateUserDto } from './dto/create-user.dto';
 export class UsersService {
     constructor(private prisma: PrismaService) {}
 
+    findOne(id: number) {
+        return this.prisma.user.findUnique({
+            where: { id },
+        });
+    }
+
     findAll() {
         return this.prisma.user.findMany();
     }

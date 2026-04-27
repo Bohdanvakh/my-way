@@ -6,10 +6,16 @@ import { CreatePostDto } from './dto/create-post.dto';
 export class PostsController {
     constructor(private readonly postsService: PostsService) {}
 
+    @Get(':id')
+    @HttpCode(200)
+    findOne(@Param('id') id: string) {
+        return this.postsService.findOne(Number(id));
+    }
+
     @Get()
     @HttpCode(200)
     findAll() {
-        return `Returns all posts.`
+        return this.postsService.findAll();
     }
 
     @Post()
