@@ -1,5 +1,15 @@
+import { IsBoolean, IsInt, IsString } from 'class-validator';
+
 export class CreatePostDto {
-    brend: string;
-    model: string;
-    year: string;
+  @IsBoolean()
+  approved: boolean;
+
+  @IsBoolean()
+  published: boolean;
+
+  @IsInt()
+  authorId: number;
+
+  @IsString()
+  title: string;
 }

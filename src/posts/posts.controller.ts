@@ -5,6 +5,14 @@ import { PostsService } from './posts.service';
 export class PostsController {
     constructor(private readonly postsService: PostsService) {}
 
+    @Get()
+    findAll() string {
+        return `Returns all posts.`
+    }
+
     @Post()
-    create(@Body() create)
+    @HttpCode(201)
+    create(@Body() createPostDto: createPostDto) {
+        return this.postsService.create(createPostDto);
+    }
 }
