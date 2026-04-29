@@ -30,4 +30,10 @@ export class PostsController {
     update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
         return this.postsService.update(Number(id), updatePostDto);
     }
+
+    @Delete(':id')
+    @HttpCode(204)
+    delete(@Param('id') id: string) {
+        return this.postsService.delete(Number(id));
+    }
 }

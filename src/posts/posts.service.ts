@@ -29,4 +29,10 @@ export class PostsService {
             data: updatePostDto,
         });
     }
+
+    delete(id: number) {
+        return this.prisma.post.delete({
+            where: { id },
+        })
+    }
 }
