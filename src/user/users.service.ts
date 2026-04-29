@@ -29,4 +29,10 @@ export class UsersService {
             data: updateUserDto,
         });
     }
+
+    delete(id: number) {
+        return this.prisma.user.delete({
+            where: { id },
+        })
+    }
 }
