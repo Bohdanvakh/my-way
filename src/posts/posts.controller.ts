@@ -33,7 +33,7 @@ export class PostsController {
 
     @Delete(':id')
     @HttpCode(204)
-    delete(@Param('id') id: string) {
-        return this.postsService.delete(Number(id));
+    remove(@Param('id') id: string) {
+        return this.postsService.remove(Number(id));
     }
 }

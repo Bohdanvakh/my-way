@@ -7,33 +7,33 @@ import { UpdateCarDto } from './dto/update-car.dto';
 export class CarsService {
   constructor(private prisma: PrismaService) {}
 
-  create(createCarDto: CreateCarDto) {
-    return this.prisma.car.create({
+  async create(createCarDto: CreateCarDto) {
+    return await this.prisma.car.create({
       data: createCarDto,
     });
   }
 
-  findAll() {
-    return this.prisma.car.findMany();
+  async findAll() {
+    return await this.prisma.car.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} car`;
+  async findOne(id: number) {
+    return await `This action returns a #${id} car`;
   }
 
   async findNewer() {
-    return this.prisma.car.findFirst({
+    return await this.prisma.car.findFirst({
       orderBy: {
         year: 'desc',
       }
     });
   }
 
-  update(id: number, updateCarDto: UpdateCarDto) {
-    return `This action updates a #${id} car`;
+  async update(id: number, updateCarDto: UpdateCarDto) {
+    return await `This action updates a #${id} car`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} car`;
+  async remove(id: number) {
+    return await `This action removes a #${id} car`;
   }
 }
