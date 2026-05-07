@@ -47,14 +47,14 @@ export class PostsService {
                 data: updatePostDto,
             });
         } catch (e) {
-            throw new NotFoundException('Post not found.');
+            throw new BadRequestException('Failed to update post.');
         }
     }
 
     async remove(id: number) {
         await this.findOne(id);
 
-        return await this.prisma.post.delete({
+        return this.prisma.post.delete({
             where: { id },
         });
     }
