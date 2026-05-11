@@ -6,4 +6,8 @@ export class CreateActivityDto {
 
     @IsInt()
     userId: number;
+    
+    status?: string;
+    startDate?: Date;
+    endDate?: Date;
 }
