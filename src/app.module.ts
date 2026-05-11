@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, RequestMethod, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CarsModule } from './cars/cars.module';
@@ -7,6 +7,7 @@ import { UsersModule } from './user/users.module';
 import { PostsModule } from './posts/posts.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ActivitiesModule } from './activities/activities.module';
+import { LoggerMiddleware } from './logger.middleware';
 
 import 'dotenv/config';
 
@@ -21,4 +22,8 @@ import 'dotenv/config';
     providers: [AppService],
 })
 
-export class AppModule {}
+export class AppModule implements NestModule {
+    configure(consumer: MiddlewareConsumer) {
+        consumer.apply(LoggerMiddleware).forRoutes({path: 'activities', method: RequestMethod.GET});
+    }
+}
