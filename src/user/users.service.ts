@@ -1,4 +1,6 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
+import { UserAlreadyExistsException } from 'src/exceptions/user-already-exists.exception';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -32,6 +34,10 @@ export class UsersService {
                 data: createUserDto
             });
         } catch (e) {
+            if ( e.code === 'P2002' ) {
+                throw new UserAlreadyExistsException();
+            }
+
             throw new BadRequestException('Failed to create user.');
         }
     }
