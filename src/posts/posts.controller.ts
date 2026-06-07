@@ -36,4 +36,9 @@ export class PostsController {
     remove(@Param('id') id: string) {
         return this.postsService.remove(Number(id));
     }
+
+    @Patch(':id/approve')
+    approve(@Param('id') id: number) {
+        return this.postsService.approve(Number(id));
+    }
 }

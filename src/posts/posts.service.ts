@@ -58,4 +58,23 @@ export class PostsService {
             where: { id },
         });
     }
+
+    // approve post status
+    async approve(id: number) {
+        console.log(this);
+        const post = await this.findOne(id);
+
+        if (post.approved) {
+            return ; // post is already approved
+        }
+
+        try {
+            return await this.prisma.post.update({
+                where: { id },
+                data: { approved: true } // update approved status
+            })
+        } catch(e) {
+            throw  new BadRequestException('Failed to approve post.');
+        }
+    }
 }
